@@ -33,7 +33,7 @@ module.exports = {
             loader: ExtractTextPlugin.extract('style-loader', 'css!autoprefixer')}, 
         {
 			test: /\.(jpe?g|gif|png|ico|svg)$/,
-			loader: 'url?name=build/[name].[hash:4].[ext]'
+			loader: 'url?limit=8192&name=build/[name].[hash:4].[ext]'
 		}, {
 			test: /\.(woff2?|otf|eot|ttf)$/i,
 			loader: 'url?name=fonts/[name].[hash:4].[ext]'

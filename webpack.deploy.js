@@ -62,7 +62,7 @@ var config = {
 			loader: 'json'
 		}, {
 			test: /\.(jp?g|gif|png|woff|ico)$/,
-			loaders: ['url-loader?name=images/[name].[hash:4].[ext]', 'img?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}']
+			loaders: ['url-loader?limit=8192&name=images/[name].[hash:4].[ext]', 'img?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}']
 		}, {
 			test: /\.(woff2?|otf|eot|ttf)$/i,
 			loader: 'url?name=fonts/[name].[hash:4].[ext]'
