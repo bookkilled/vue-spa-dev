@@ -2,20 +2,23 @@
   <div>
     <m-header v-if="showhead"></m-header>
     <div v-bind:class="{pt44: showhead}">
-      <h1>Hello App!</h1>
+      <h1>Page: active</h1>
       <p>
         <!-- 使用 router-link 组件来导航. -->
         <!-- 通过传入 `to` 属性指定链接. -->
         <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
         <router-link to="/login">Go to login</router-link>
-        <router-link to="/">Go to home</router-link>
+        <router-link :to="{path:'/login',query: {name:'bookkilled'}}">Go to home</router-link>
+        <span @click="tologin">去登录页</span>
       </p>
     </div>
   </div>
 </template>
 
 <script>
+import router from '../routes'
 import MHeader from '../components/header.vue'
+
 export default {
   name: 'app',
   components: {
@@ -25,6 +28,11 @@ export default {
     return {
       showhead: true, // 是否需要现实头部
       msg: 'Welcome to Hello'
+    }
+  },
+  methods: {
+    tologin: function () {
+      router.push({ name: 'Login', query: { name: 'svenzhou', age: 28 }})
     }
   }
 }

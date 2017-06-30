@@ -1,6 +1,6 @@
 <template>
     <header id="m-header" class="brand-title">
-        <span class="brand-title-back"></span>
+        <span class="brand-title-back" @></span>
         注册登录
     </header>
 </template>
@@ -17,6 +17,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../styles/components/header.less';
+// @import '../styles/components/header.less';
 </style>
 

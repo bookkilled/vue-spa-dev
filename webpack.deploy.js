@@ -56,7 +56,7 @@ var config = {
 			loader: "html"
 		},{
 			test: /\.less$/,
-			loader: ExtractTextPlugin.extract('css?-minimize!less')
+			loader: ExtractTextPlugin.extract('css?-minimize!postcss!less')
 		}, {
 			test: /\.json?$/,
 			loader: 'json'
@@ -94,6 +94,12 @@ var config = {
 				convertPathData: false
 			}]
 		}
+	},
+	postcss: function() {
+		return [
+			require('precss'),
+			require('autoprefixer')
+		]
 	},
 	plugins: [
 		new HtmlWebpackPlugin({

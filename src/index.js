@@ -1,5 +1,6 @@
 import 'styles/index.less'
 import Vue from 'vue'
+import Vuex from 'vuex'
 import App from './views/App'
 import MHeader from './components/header.vue'
 import MFooter from './components/footer.vue'

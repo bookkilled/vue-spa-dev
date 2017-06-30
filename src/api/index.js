@@ -10,6 +10,7 @@ const domain = (process.env.DEV_ENV === 'production')
 	? `${location.protocol}//m.pingan.com/chaoshi`
 	: `${location.protocol}//m.pingan.com/chaoshi`
 
+
 // 获取产品列表
 export function getProducts(params) {
   return reqwest({

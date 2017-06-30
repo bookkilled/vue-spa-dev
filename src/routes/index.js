@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '../views/Hello.vue'
+import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
+import Active from '../views/Active.vue'
 
 Vue.use(Router)
 
@@ -9,8 +10,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'Home',
+      component: Home
     },
     {
       path: '/login',
@@ -18,9 +19,9 @@ export default new Router({
       component: Login
     },
     {
-      path: '/hello',
-      name: 'Hello',
-      component: Hello
+      path: '/active',
+      name: 'Active',
+      component: Active
     }
   ]
 })

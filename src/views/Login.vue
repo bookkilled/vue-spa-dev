@@ -2,18 +2,20 @@
 <div>
   <m-header v-if="showhead"></m-header>
   <div v-bind:class="{pt44: showhead}">
-    <div class="grid-box ma-tb10">
+    <loading v-if="loading"></loading>
+    <div class="errmsg" v-else-if="errstate">{{ errmsg }}</div>
+    <div class="grid-box ma-tb10" v-else>
         <div class="grid-box-row">
             <div class="col-both">手机号</div>
             <div class="col-both mid">
-                <input type="text" class="inp" pattern="[0-9]*" placeholder="请输入手机号" id="mobile" maxlength="11">
+                <input type="text" class="inp" pattern="[0-9]*" placeholder="请输入手机号" id="mobile" maxlength="11" v-model="mobile">
             </div>
             <div class="col-both"></div>
         </div>
         <div class="grid-box-row">
             <div class="col-both">验证码</div>
             <div class="col-both mid">
-                <input type="text" class="inp" placeholder="请输入验证码" id="imgcode" maxlength="5">
+                <input type="text" class="inp" placeholder="请输入验证码" id="imgcode" maxlength="5" v-model="imgcode">
             </div>
             <div class="col-both">
                 <span><img src="http://m.leadfund.com.cn/front-gateway-web//imgCodeAction.action?_sag_time=1498704673675"></span>
@@ -22,11 +24,46 @@
         <div class="grid-box-row">
             <div class="col-both">动态码</div>
             <div class="col-both mid">
-                <input type="text" class="inp" placeholder="请输入动态码" id="smscode" maxlength="6">
+                <input type="text" class="inp" placeholder="请输入动态码" id="smscode" maxlength="6" v-model="smscode">
             </div>
             <div class="col-both">
-                <span class="smsbtn" id="smsbtn" @click="login">获取验证码</span>
+                <span class="smsbtn" id="smsbtn" @click="sendsms">获取验证码</span>
             </div>
+        </div>
+        <div class="grid-box-row">
+            <div class="col-both">URL获取</div>
+            <div class="col-both mid">
+                {{ msg }}
+            </div>
+            <div class="col-both">
+            </div>
+        </div>
+        <div class="grid-box-row">
+            <div class="col-both">手机号</div>
+            <div class="col-both mid">
+                {{ mobile }}
+            </div>
+            <div class="col-both">
+            </div>
+        </div>
+        <div class="grid-box-row">
+            <div class="col-both">图形验证码</div>
+            <div class="col-both mid">
+                {{ imgcode }}
+            </div>
+            <div class="col-both">
+            </div>
+        </div>
+        <div class="grid-box-row">
+            <div class="col-both">短信验证码</div>
+            <div class="col-both mid">
+                {{ smscode }}
+            </div>
+            <div class="col-both">
+            </div>
+        </div>
+        <div class="btn-box ma-tb10">
+           <span class="subtn" @click="login">提交</span>
         </div>
     </div>
   </div>
@@ -35,36 +72,68 @@
 
 <script>
 import MHeader from '../components/header.vue'
+import loading from '../components/loading.vue'
 import * as api from '../api'
+import { getUrlParam } from '../utils/base'
 
 export default {
   name: 'app',
   components: {
-      MHeader
+      MHeader,
+      loading
   },
   data () {
     return {
         showhead: true, // 是否需要现实头部
-        msg: 'Welcome to Login',
-        
+        msg: this.$route.query.name,
+        mobile: '', // 手机号
+        imgcode: '', // 图形验证码
+        smscode: '', // 短信验证码
+        loading: true, // loading 插件
+        errstate: false, // 接口状态
+        errmsg: '' // 接口异常展示信息
     }
   },
   methods: {
-      login: function(prams) {
-            console.log('login···')
-            api.getProductDetail('10029121')
+      login: function (prams) {
+          let vm = this
+            api.getProductDetail('10030121').then(function (res) {
+                console.log('ok')
+            },function (err) {
+                console.log('err')
+            });
+      },
+      sendsms: function () {},
+      getCode: function () {
+          
       }
   },
-  beforeCreate:function(){},//组件实例化之前
-    created:function(){},//组件实例化了
-    beforeMount:function(){},//组件写入dom结构之前
-    mounted:function(){//组件写入dom结构了
-        console.log(this.$children);
-        console.log(this.$refs);
+    beforeCreate:function(){},//组件实例化之前: 举个栗子：可以在这加个loading事件 
+    created:function(){
+        // this.loading = false
+    },//组件实例化了:  在这结束loading，还做一些初始化，实现函数自执行 
+    beforeMount:function(){
+        
+    },//组件写入dom结构之前
+    mounted:function(){//组件写入dom结构了:  在这发起后端请求，拿回数据，配合路由钩子做一些事情
+        // console.log(this.$children);
+        // console.log(this.$refs);
+        let vm = this
+        api.getProductDetail('10030121').then(function (res) {
+            console.log('ok')
+        },function (err) {
+            console.log('err')
+            vm.errstate = true
+            vm.errmsg = '接口请求异常！'
+        }).always(function(){
+            vm.loading = false
+        });
     },
-    beforeUpdate:function(){},//组件更新前
+    beforeUpdate:function(){
+        
+    },//组件更新前
     updated:function(){},//组件更新比如修改了文案
-    beforeDestroy:function(){},//组件销毁之前
+    beforeDestroy:function(){},//组件销毁之前 你确认删除XX吗？ destoryed ：当前组件已被删除，清空相关内容
     destroyed:function(){}//组件已经销毁
 }
 </script>

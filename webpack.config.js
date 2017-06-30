@@ -27,7 +27,7 @@ module.exports = {
 			loader: "html"
 		},{
 			test: /\.less$/,
-			loader: 'style!css!less'
+			loader: 'style!css!postcss!less'
 		}, {
             test: /\.css$/, 
             loader: ExtractTextPlugin.extract('style-loader', 'css!autoprefixer')}, 
@@ -59,6 +59,12 @@ module.exports = {
 			'assets': path.resolve(__dirname, '../src/assets'),
 			'components': path.resolve(__dirname, '../src/components')
 		}
+	},
+	postcss: function() {
+		return [
+			require('precss'),
+			require('autoprefixer')
+		]
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
