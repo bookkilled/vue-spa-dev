@@ -10,6 +10,7 @@
         <li><router-link to="/login">Go to login</router-link></li>
         <li><router-link :to="{path:'/login',query: {name:'bookkilled'}}">Go to home</router-link></li>
         <li><span @click="tologin">去登录页</span></li>
+        <li><span @click="toactive">列表接口</span></li>
       </ul>
     </div>
   </div>
@@ -32,7 +33,10 @@ export default {
   },
   methods: {
     tologin: function () {
-      router.push({ name: 'Login', query: { name: 'svenzhou', age: 28 }})
+      router.push({ path: '/login', query: { name: 'svenzhou', age: 28 }})
+    },
+    toactive: function () {
+      router.push({ path: '/active', query: { pageNo: 'A001' }})
     }
   }
 }
