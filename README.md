@@ -1,6 +1,21 @@
 ## Vue-spa-dev
 
-本版本不包含 状态一块管理store
+`本版本不包含 状态一块管理store`
+
+
+## 安装
+`执行安装前先按照http://wiki.inleadbank.com.cn/pages/viewpage.action?pageId=5767362 配置好环境尤其是更改镜像来源`
+```bash
+// 安装依赖
+npm install
+// 启动本地开发环境
+npm start
+// 打包测试环境
+npm run deploy
+// 打包生产环境
+npm run deploy:prod
+```
+
 
 vuex[文档](http://vuex.vuejs.org/zh-cn/state.html)
 
@@ -11,12 +26,11 @@ src                     // 源码
     --api               // 接口请求
         --index.js
     --assets            // 静态资源
-        --lib               // 三方插件
+        --lib               // 三方插件(zepto/leadbase)
     --components        // 通用插件管理
     --routes            // 页面路由配置
     --styles            // 样式目录
         --components        // 组件样式
-    --utils             // 自定义插件
     --views             // 项目页面定义
     --index.js          // 入口页面js
     --index.tpl.html    // 入口页面模板
@@ -48,5 +62,6 @@ destroyed:function(){}//组件已经销毁
 2、接口请求使用 `reqwest.js`   
 3、路由配置使用 `vue-router`  
 4、样式文件使用 `less` 文件格式
+
 
 
