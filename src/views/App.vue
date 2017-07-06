@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <transition name="fadeOutLeft">
-     <router-view></router-view>
+    <transition name="no-mode-translate-fade">
+     <router-view class="childview"></router-view>
     </transition>
   </div>
 </template>
@@ -18,21 +18,18 @@ export default {
 </script>
 
 <style>
-.outLeftInRight-transition,
-.fadeOutLeft-transition, 
-.fadeInLeft-transition {
-  transition: transform .3s ease-in-out;
+.childview { height: 100%; }
+.no-mode-translate-fade-enter-active, .no-mode-translate-fade-leave-active {
+  transition: all .5s;
 }
-/* 进入时的状态，从右开始 */
-.outLeftInRight-enter,
-.fadeInLeft-enter,
-.fadeInLeft-leave {
+.no-mode-translate-fade-enter, .no-mode-translate-fade-leave-active {
+  opacity: 0;
+}
+.no-mode-translate-fade-enter {
   transform: translateX(100%);
 }
-/* 离开时的状态，向左移动 */
-.outLeftInRight-leave,
-.fadeOutLeft-enter,
-.fadeOutLeft-leave {
+.no-mode-translate-fade-leave-active {
   transform: translateX(-100%);
 }
+
 </style>

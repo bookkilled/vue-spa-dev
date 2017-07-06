@@ -1,7 +1,7 @@
 <template>
     <header id="m-header" class="brand-title">
-        <span class="brand-title-back" @></span>
-        注册登录
+        <span class="brand-title-back" @click="goback"></span>
+        {{ title }}
     </header>
 </template>
 
@@ -10,7 +10,13 @@ export default {
   name: 'm-header',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      title: this.$route.name
+    }
+  },
+  methods: {
+    goback: function () {
+      history.go(-1)
     }
   }
 }

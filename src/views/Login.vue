@@ -27,7 +27,7 @@
                 <input type="text" class="inp" placeholder="请输入动态码" id="smscode" maxlength="6" v-model="smscode">
             </div>
             <div class="col-both">
-                <span class="smsbtn" id="smsbtn" @click="sendsms">获取验证码</span>
+                <span class="smsbtn" id="smsbtn" @click="sendsms" ref="sendsms">获取验证码</span>
             </div>
         </div>
         <div class="grid-box-row">
@@ -74,7 +74,7 @@
 import MHeader from '../components/header.vue'
 import loading from '../components/loading.vue'
 import * as api from '../api'
-import { getUrlParam } from '../utils/base'
+import { getUrlParam } from '../assets/lib/base'
 
 export default {
   name: 'app',
@@ -91,21 +91,35 @@ export default {
         smscode: '', // 短信验证码
         loading: true, // loading 插件
         errstate: false, // 接口状态
-        errmsg: '' // 接口异常展示信息
+        errmsg: '', // 接口异常展示信息
+        cstate: true // 是否可发送短信验证码
     }
   },
   methods: {
       login: function (prams) {
           let vm = this
-            api.getProductDetail('10030121').then(function (res) {
-                console.log('ok')
+            api.isLogin().then(function (res) {
+                console.log(res)
             },function (err) {
                 console.log('err')
             });
       },
-      sendsms: function () {},
+      sendsms: function (e) {
+        // 防重点击
+        let vm = this
+        function sendapi() {
+            setTimeout(function(){
+                console.log('接口请求结束！')
+                vm.cstate = true
+            }, 3e3)
+        }
+        if (vm.cstate) {
+            vm.cstate = false
+            sendapi()
+        } 
+      },
       getCode: function () {
-          
+          console.log('getcode')
       }
   },
     beforeCreate:function(){},//组件实例化之前: 举个栗子：可以在这加个loading事件 
@@ -117,16 +131,17 @@ export default {
     },//组件写入dom结构之前
     mounted:function(){//组件写入dom结构了:  在这发起后端请求，拿回数据，配合路由钩子做一些事情
         // console.log(this.$children);
-        // console.log(this.$refs);
+        console.log(api.RSAmergeDate({}));
         let vm = this
-        api.getProductDetail('10030121').then(function (res) {
-            console.log('ok')
+        api.isLogin().then(function (res) {
+            console.log(res)
         },function (err) {
-            console.log('err')
             vm.errstate = true
             vm.errmsg = '接口请求异常！'
         }).always(function(){
-            vm.loading = false
+            setTimeout(function(){
+                vm.loading = false
+            }, 2000)
         });
     },
     beforeUpdate:function(){

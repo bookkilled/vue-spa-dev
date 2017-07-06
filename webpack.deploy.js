@@ -23,7 +23,9 @@ var config = {
 			'vue',
 			'vue-router',
 			'vuex',
-			'reqwest'
+			'reqwest',
+			'utils/zepto.min.js',
+			'utils/leadbase.min.js'
 		]
 	},
 	output: {
