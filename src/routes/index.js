@@ -1,27 +1,74 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Active from '../views/Active.vue'
 
+// 懒加载组件
+const Login = resolve => require(['../views/Login.vue'], resolve)
+const Active = resolve => require(['../views/Active.vue'], resolve)
+// import Login from '../views/Login.vue'
+// import Active from '../views/Active.vue'
+
+// 返回统一操作
+Router.prototype.goBack = function () { 
+　　this.isBack = true;
+　　window.history.go(-1);
+}
 Vue.use(Router)
-
 export default new Router({
   routes: [
     {
       path: '/',
-      name: '首页',
-      component: Home
+      name: 'Index',
+      component: Home,
+      meta: {
+        title: '首页'
+      },
+      beforeEnter (to, from, next) {
+        console.log('渲染Index')
+        next()
+        // 在渲染该组件的对应路由被 confirm 前调用
+        // 不！能！获取组件实例 `this`
+        // 因为当钩子执行前，组件实例还没被创建
+      },
+      afterEnter (to, from) {
+        console.log('离开Index')
+      }
     },
     {
       path: '/login',
-      name: '用户登录',
-      component: Login
+      name: 'Login',
+      component: Login,
+      meta: {
+        title: '登录注册'
+      },
+      beforeEnter (to, from, next) {
+        console.log('渲染Login')
+        next()
+        // 在渲染该组件的对应路由被 confirm 前调用
+        // 不！能！获取组件实例 `this`
+        // 因为当钩子执行前，组件实例还没被创建
+      },
+      afterEnter (to, from) {
+        console.log('离开Login')
+      }
     },
     {
       path: '/active',
-      name: '列表页',
-      component: Active
+      name: 'Active',
+      component: Active,
+      meta: {
+        title: '列表页'
+      },
+      beforeEnter (to, from, next) {
+        console.log('渲染Active')
+        next()
+        // 在渲染该组件的对应路由被 confirm 前调用
+        // 不！能！获取组件实例 `this`
+        // 因为当钩子执行前，组件实例还没被创建
+      },
+      afterEnter (to, from) {
+        console.log('离开Active')
+      }
     }
   ]
 })

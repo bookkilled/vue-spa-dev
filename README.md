@@ -14,6 +14,8 @@ npm start
 npm run deploy
 // 打包生产环境
 npm run deploy:prod
+// MAC下打开chrome设置支持post跨域
+open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/bookkilled/MyChromeDevUserData/
 ```
 
 

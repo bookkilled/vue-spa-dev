@@ -73,3 +73,22 @@ export function getProducts(params) {
     data: { data: RSAmergeDate(params)}
   })
 }
+
+// 测试多数据
+export function getPAList() {
+  return reqwest({
+    url: 'https://m.pingan.com/chaoshi/finance/open/product/productList.do',
+    method: 'GET',
+    type: 'jsonp',
+    timeout: setTimeout,
+    contentType: 'application/json;charset=utf-8',
+    data: {
+      pageStartNum: 0,
+      pageEndNum: 100,
+      productSide: '',
+      secondLevelType: '10000006',
+      tagCode: '',
+      combinSort:''
+    }
+  })
+}

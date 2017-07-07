@@ -11,12 +11,13 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      title: this.$route.name
+      title: this.$route.meta.title
     }
   },
   methods: {
     goback: function () {
-      history.go(-1)
+      // routes/index 定义同意返回方法
+      this.$router.goBack();
     }
   }
 }

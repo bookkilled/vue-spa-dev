@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted: function () {
-    console.log('加载完毕')
+    // console.log('加载完毕')
   }
 }
 </script>

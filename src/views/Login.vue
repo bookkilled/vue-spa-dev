@@ -64,6 +64,7 @@
         </div>
         <div class="btn-box ma-tb10">
            <span class="subtn" @click="login">提交</span>
+           <p @click="toactive">跳转到列表页</p>
         </div>
     </div>
   </div>
@@ -71,6 +72,7 @@
 </template>
 
 <script>
+import router from '../routes'
 import MHeader from '../components/header.vue'
 import loading from '../components/loading.vue'
 import * as api from '../api'
@@ -120,9 +122,14 @@ export default {
       },
       getCode: function () {
           console.log('getcode')
+      },
+      toactive: function () {
+        router.push({ name: 'Active', query: { name: 'svenzhou', age: 28 }})
       }
   },
-    beforeCreate:function(){},//组件实例化之前: 举个栗子：可以在这加个loading事件 
+    beforeCreate:function(){
+        console.log('login 组件实例化之前')
+    },//组件实例化之前: 举个栗子：可以在这加个loading事件 
     created:function(){
         // this.loading = false
     },//组件实例化了:  在这结束loading，还做一些初始化，实现函数自执行 
@@ -131,7 +138,7 @@ export default {
     },//组件写入dom结构之前
     mounted:function(){//组件写入dom结构了:  在这发起后端请求，拿回数据，配合路由钩子做一些事情
         // console.log(this.$children);
-        console.log(api.RSAmergeDate({}));
+        // console.log(api.RSAmergeDate({}));
         let vm = this
         api.isLogin().then(function (res) {
             console.log(res)
