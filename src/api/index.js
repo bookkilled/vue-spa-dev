@@ -84,7 +84,7 @@ export function getPAList() {
     contentType: 'application/json;charset=utf-8',
     data: {
       pageStartNum: 0,
-      pageEndNum: 100,
+      pageEndNum: 50,
       productSide: '',
       secondLevelType: '10000006',
       tagCode: '',

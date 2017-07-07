@@ -74,7 +74,7 @@
 <script>
 import router from '../routes'
 import MHeader from '../components/header.vue'
-import loading from '../components/loading.vue'
+import loading from '../components/ldloading.vue'
 import * as api from '../api'
 import { getUrlParam } from '../assets/lib/base'
 
@@ -146,9 +146,7 @@ export default {
             vm.errstate = true
             vm.errmsg = '接口请求异常！'
         }).always(function(){
-            setTimeout(function(){
-                vm.loading = false
-            }, 2000)
+            vm.loading = false
         });
     },
     beforeUpdate:function(){
