@@ -1,6 +1,6 @@
 <template>
 <div>
-  <m-header v-if="showhead"></m-header>
+  <!--<m-header v-if="showhead"></m-header>-->
   <div v-bind:class="{pt44: showhead}">
     <loading v-if="loading"></loading>
     <div class="errmsg" v-else-if="errstate">{{ errmsg }}</div>
@@ -127,6 +127,14 @@ export default {
         router.push({ name: 'Active', query: { name: 'svenzhou', age: 28 }})
       }
   },
+    beforeRouteEnter (to, from, next) {
+        console.log('进入Login')
+        next()
+    },
+    beforeRouteLeave (to, from, next) {
+        console.log('离开Login')
+        next()
+    },
     beforeCreate:function(){
         console.log('login 组件实例化之前')
     },//组件实例化之前: 举个栗子：可以在这加个loading事件 

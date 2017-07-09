@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!--<m-header v-if="showhead"></m-header>-->
     <transition :name="tsclass">
      <router-view class="child-view"></router-view>
     </transition>
@@ -7,14 +8,19 @@
 </template>
 
 <script>
+// import MHeader from '../components/header.vue'
+
 export default {
   name: 'app',
   data() {
     return {
-      showhead: false,
+      showhead: true,
       tsclass: 'slide-left'
     }
   },
+  // components: {
+  //     MHeader
+  // },
   // 监听路由
   watch: {
     '$route' (to, from) {
@@ -31,20 +37,24 @@ export default {
 </script>
 
 <style>
+#app {
+  min-height: 100%;
+}
 .child-view {
   position: absolute;
   width: 100%;
-  height: 100%;
   transition: all .3s cubic-bezier(.55,0,.1,1);
 }
 .slide-left-enter, .slide-right-leave-active {
+  height: 100%;
   opacity: 0;
-  -webkit-transform: translate(100%, 0);
-  transform: translate(100%, 0);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
 }
 .slide-left-leave-active, .slide-right-enter {
+  height: 100%;
   opacity: 0;
-  -webkit-transform: translate(-100%, 0);
-  transform: translate(-100%, 0);
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 </style>
