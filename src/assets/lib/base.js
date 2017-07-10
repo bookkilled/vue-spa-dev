@@ -59,3 +59,30 @@ export function fbtoa(str) {
 export function fatob(str) {
   return decodeURIComponent(atob(str))
 }
+
+// 判断微信
+export function isWeiXin() {
+  const ua = window.navigator.userAgent.toLowerCase()
+  if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+    window.isWeixin = true
+  } else {
+    window.isWeixin = false
+  }
+}
+// 解决微信下面title设置问题
+export function setTit(title) {
+  // 利用iframe的onload事件刷新页面
+  console.log(title)
+  document.title = title
+  const iframe = document.createElement('iframe')
+  iframe.src = '//www.leadfund.com.cn/common/images/favicon.ico'
+  iframe.style.visibility = 'hidden'
+  iframe.style.width = '1px'
+  iframe.style.height = '1px'
+  iframe.onload = function () {
+    setTimeout(() => {
+      document.body.removeChild(iframe)
+    }, 0)
+  }
+  document.body.appendChild(iframe)
+}

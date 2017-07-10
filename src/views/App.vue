@@ -8,8 +8,9 @@
 </template>
 
 <script>
-// import MHeader from '../components/header.vue'
+import { isWeiXin, setTit } from '../assets/lib/base'
 
+isWeiXin()
 export default {
   name: 'app',
   data() {
@@ -24,7 +25,8 @@ export default {
   // 监听路由
   watch: {
     '$route' (to, from) {
-      let isBack = this.$router.isBack && this.$router.isBack  //  监听路由变化时的状态为前进还是后退
+      window.isWeixin && setTit(this.$route.meta.title || '处理中')
+      let isBack = this.$router.isBack  //  监听路由变化时的状态为前进还是后退
 　　　 if(isBack) {
 　　　　　this.tsclass = 'slide-right'
 　　　 } else {
@@ -43,6 +45,7 @@ export default {
 .child-view {
   position: absolute;
   width: 100%;
+  min-height: 100%;
   transition: all .3s cubic-bezier(.55,0,.1,1);
 }
 .slide-left-enter, .slide-right-leave-active {

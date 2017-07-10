@@ -19,6 +19,8 @@
 <script>
 import router from '../routes'
 import MHeader from '../components/header.vue'
+import * as api from '../api'
+// import { setTit } from '../assets/lib/base'
 
 export default {
   name: 'app',
@@ -38,6 +40,25 @@ export default {
     toactive: function () {
       router.push({ path: '/active', query: { pageNo: 'A001' }})
     }
+  },
+  beforeCreate: function () {
+      console.log('login 组件实例化之前')
+      api.getJson().then(function (res) {
+          
+      },function (err) {
+          
+      }).always(function(){
+         
+      });
+  },
+  beforeRouteEnter (to, from, next) {
+      console.log('APP载入页面：', to.path, from.path)
+      localStorage.setItem('proLink', from.path)
+      next()
+  },
+  beforeRouteLeave (to, from, next) {
+      console.log('APP离开页面：',to.path, from.path)
+      next()
   }
 }
 </script>

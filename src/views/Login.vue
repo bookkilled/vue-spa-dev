@@ -1,6 +1,6 @@
 <template>
 <div>
-  <!--<m-header v-if="showhead"></m-header>-->
+  <m-header v-if="showhead"></m-header>
   <div v-bind:class="{pt44: showhead}">
     <loading v-if="loading"></loading>
     <div class="errmsg" v-else-if="errstate">{{ errmsg }}</div>
@@ -101,7 +101,7 @@ export default {
       login: function (prams) {
           let vm = this
             api.isLogin().then(function (res) {
-                console.log(res)
+                // console.log(res)
             },function (err) {
                 console.log('err')
             });
@@ -128,10 +128,12 @@ export default {
       }
   },
     beforeRouteEnter (to, from, next) {
+        console.log('APP离开页面：',to.path, from.path)
         console.log('进入Login')
         next()
     },
     beforeRouteLeave (to, from, next) {
+        // console.log(to.path, from.path)
         console.log('离开Login')
         next()
     },

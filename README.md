@@ -44,6 +44,19 @@ webpack.config.js       // 本地开发webpack配置
 webpack.deploy.js       // 打包测试生产配置          
 ```
 
+> Package.JSON 打包命令修改
+```javascript
+// Mac 下
+"deploy": "rm -rf dist && NODE_ENV=production DEV_ENV=test webpack --config ./webpack.deploy.js --progress --profile --colors",
+    "deploy:prod": "rm -rf dist && NODE_ENV=production DEV_ENV=production webpack --config ./webpack.deploy.js --progress --profile --colors",
+
+// Windows 下
+"deploy": "set NODE_ENV=production && set DEV_ENV=test && webpack --config ./webpack.deploy.js --progress --profile --colors",
+"deploy:prod": "set NODE_ENV=production && set DEV_ENV=production && webpack --config ./webpack.deploy.js --progress --profile --colors",
+```
+
+
+
 > 组件生命周期
 ```javascript
 beforeCreate:function(){},//组件实例化之前

@@ -11,7 +11,7 @@
                   {{ item.productName }}
               </div>
               <div class="col-both">
-                {{ `${item.incomeInstruction}` }} ({{ item.timeLimit }}) 天
+                {{ `${item.incomeRate}%` }} ({{ item.timeLimit | formartDay('天') }})
               </div>
           </div>
           <p @click="tologin">跳转到登录页</p>
@@ -25,7 +25,7 @@ import router from '../routes'
 import MHeader from '../components/header.vue'
 import loading from '../components/ldloading.vue'
 import * as api from '../api'
-import { getUrlParam } from '../assets/lib/base'
+import { getUrlParam, setTit } from '../assets/lib/base'
 
 export default {
   name: 'app',
@@ -41,6 +41,11 @@ export default {
       errstate: false, // 接口状态
       errmsg: '', // 接口异常展示信息
       lists: {}
+    }
+  },
+  filters: {
+    formartDay: function (value, type) {
+      return value + type;
     }
   },
   methods: {
@@ -61,7 +66,6 @@ export default {
       let vm = this
       setTimeout(function(){
         api.getPAList().then(function (res) {
-            console.log(res)
             vm.lists = res.responseData && res.responseData.dataList
         },function (err) {
             vm.errstate = true
@@ -76,7 +80,15 @@ export default {
   },//组件更新前
   updated:function(){},//组件更新比如修改了文案
   beforeDestroy:function(){},//组件销毁之前 你确认删除XX吗？ destoryed ：当前组件已被删除，清空相关内容
-  destroyed:function(){}//组件已经销毁
+  destroyed:function(){},//组件已经销毁
+  beforeRouteEnter (to, from, next) {
+    localStorage.setItem('proLink', from.path)
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    localStorage.getItem('proLink') == to.path && (this.$router.isBack = true)
+    next()
+  },
 }
 </script>
 

@@ -6,8 +6,8 @@
   "scripts": {
     "start": "babel-node server",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build",
-    "deploy": "rm -rf dist && NODE_ENV=production DEV_ENV=test webpack --config ./webpack.deploy.js --progress --profile --colors",
-    "deploy:prod": "rm -rf dist && NODE_ENV=production DEV_ENV=production webpack --config ./webpack.deploy.js --progress --profile --colors",
+    "deploy": "set NODE_ENV=production && set DEV_ENV=test && webpack --config ./webpack.deploy.js --progress --profile --colors",
+"deploy:prod": "set NODE_ENV=production && set DEV_ENV=production && webpack --config ./webpack.deploy.js --progress --profile --colors",
     "test": "npm run lint"
   },
   "author": "leadbank",

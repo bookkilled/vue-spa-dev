@@ -92,3 +92,16 @@ export function getPAList() {
     }
   })
 }
+
+// json
+export function getJson() {
+  return reqwest({
+    url: `build/aaa.json`,
+    method: 'GET',
+    type: 'json',
+    timeout: setTimeout,
+    contentType: 'application/json;charset=utf-8',
+    data: mergeData()
+  })
+}
+

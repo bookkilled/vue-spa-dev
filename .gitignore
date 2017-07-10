@@ -1,8 +1,7 @@
 .DS_Store
 node_modules/
 dist/
-npm-debug.log*
-package.json
+.gitignore
 
 # Editor directories and files
 .idea
@@ -10,3 +9,5 @@ package.json
 *.ntvs*
 *.njsproj
 *.sln
+npm-debug.log
+package.json
