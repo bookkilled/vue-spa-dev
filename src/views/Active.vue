@@ -25,7 +25,7 @@ import router from '../routes'
 import MHeader from '../components/header.vue'
 import loading from '../components/ldloading.vue'
 import * as api from '../api'
-import { getUrlParam, setTit } from '../assets/lib/base'
+import { getUrlParam, setTit } from '../utils/leadbase'
 
 export default {
   name: 'app',

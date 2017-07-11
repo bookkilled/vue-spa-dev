@@ -22,10 +22,7 @@ var config = {
 			'babel-polyfill',
 			'vue',
 			'vue-router',
-			'vuex',
-			'reqwest',
-			'utils/zepto.min.js',
-			'utils/leadbase.min.js'
+			'reqwest'
 		]
 	},
 	output: {
@@ -52,13 +49,13 @@ var config = {
 	module: {
 		loaders: [{
 			test: /\.vue$/,
-			loader: 'vue-loader'
+			loader: 'vue'
 		},{
 			test: /\.html$/,
 			loader: "html"
 		},{
 			test: /\.less$/,
-			loader: ExtractTextPlugin.extract('css?-minimize!postcss!less')
+			loader: 'css?-minimize!postcss!less'
 		}, {
 			test: /\.json?$/,
 			loader: 'json'
@@ -113,11 +110,11 @@ var config = {
 			source: false,
 			modules: true
 		}),
-		new ExtractTextPlugin('css/index.css'),
+		new ExtractTextPlugin('css/index.css', { allChunks: true }),
 		new webpack.optimize.CommonsChunkPlugin('shared', 'js/shared.js'),
-		new TransferWebpackPlugin([
-			{ from: 'assets/lib', to: 'js'}
-		], path.join(__dirname, 'src')),
+		// new TransferWebpackPlugin([
+		// 	{ from: 'assets/lib', to: 'js'}
+		// ], path.join(__dirname, 'src')),
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			sourceMap: false,

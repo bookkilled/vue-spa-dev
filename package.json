@@ -7,18 +7,17 @@
     "start": "babel-node server",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build",
     "deploy": "set NODE_ENV=production && set DEV_ENV=test && webpack --config ./webpack.deploy.js --progress --profile --colors",
-"deploy:prod": "set NODE_ENV=production && set DEV_ENV=production && webpack --config ./webpack.deploy.js --progress --profile --colors",
+    "deploy:prod": "set NODE_ENV=production && set DEV_ENV=production && webpack --config ./webpack.deploy.js --progress --profile --colors",
     "test": "npm run lint"
   },
   "author": "leadbank",
   "license": "ISC",
   "dependencies": {
+    "echarts": "^3.6.2",
     "lodash": "^4.17.4",
-    "n-zepto": "^1.2.0",
     "reqwest": "^2.0.5",
     "vue": "^2.3.3",
-    "vue-router": "^2.6.0",
-    "vuex": "^2.3.1"
+    "vue-router": "^2.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -45,7 +44,6 @@
     "json-loader": "^0.5.4",
     "less": "^2.5.3",
     "less-loader": "^2.2.3",
-    "mockjs": "^1.0.1-beta3",
     "postcss-loader": "^0.9.1",
     "precss": "^1.4.0",
     "stats-webpack-plugin": "^0.2.2",

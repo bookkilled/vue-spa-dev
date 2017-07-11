@@ -2,7 +2,8 @@
   <div>
     <m-header v-if="showhead"></m-header>
     <div v-bind:class="{pt44: showhead}">
-      <p class="nav">Page: home</p>
+      <!--<loading v-if="loading"></loading>-->
+      <div id="myChart" :style="{width: '100%', height: '300px'}"></div>
       <ul class="linklist">
         <!-- 使用 router-link 组件来导航. -->
         <!-- 通过传入 `to` 属性指定链接. -->
@@ -11,7 +12,7 @@
         <li><router-link :to="{path:'/login',query: {name:'bookkilled'}}">Go to home</router-link></li>
         <li><span @click="tologin">去登录页</span></li>
         <li><span @click="toactive">列表接口</span></li>
-        <li><span @click="toecharts">去图表页面</span></li>
+        <li><span @click="toecharts" id="dabao">去图表页面</span></li>
       </ul>
     </div>
   </div>
@@ -22,19 +23,46 @@ import router from '../routes'
 import MHeader from '../components/header.vue'
 import * as api from '../api'
 import { IS_WX, ToDX, dateWeek, setNewDate } from '../utils/leadbase'
-
+// 引入基本模板
+import echarts from 'echarts/lib/echarts'
+// 引入柱状图组件
+import 'echarts/lib/chart/bar'
+// 引入提示框和title组件
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/title'
 export default {
-  name: 'app',
-  components: {
-      MHeader
-  },
-  data () {
+  name: 'hello',
+  data() {
     return {
-      showhead: false, // 是否需要现实头部
-      msg: 'Welcome to Hello'
+      showhead: true,
+      msg: 'Welcome to Your Vue.js App'
     }
   },
+  components: {
+    MHeader
+  },
+  mounted() {
+    this.drawLine();
+  },
   methods: {
+    drawLine() {
+      // 基于准备好的dom，初始化echarts实例
+      let myChart = echarts.init(document.getElementById('myChart'))
+      // 绘制图表
+      myChart.setOption({
+        title: { text: 'ECharts 入门示例' },
+        tooltip: {},
+        xAxis: {
+          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        },
+        yAxis: {},
+        series: [{
+          name: '销量',
+          type: 'bar',
+          data: [5, 20, 36, 10, 10, 20]
+        }]
+      });
+    },
     tologin: function () {
       router.push({ path: '/login', query: { name: 'svenzhou', age: 28 }})
     },
@@ -44,30 +72,12 @@ export default {
     toecharts: function () {
       router.push({ path: '/echarts', query: { pageNo: 'A002' } })
     }
-  },
-  beforeCreate: function () {
-      console.log('是不是微信：', IS_WX, ToDX('8007630.27'), dateWeek('2017-07-11'), setNewDate('2017-08-31'))
-      api.getJson().then(function (res) {
-          
-      },function (err) {
-          
-      }).always(function(){
-         
-      });
-  },
-  beforeRouteEnter (to, from, next) {
-      console.log('APP载入页面：', to.path, from.path)
-      localStorage.setItem('proLink', from.path)
-      next()
-  },
-  beforeRouteLeave (to, from, next) {
-      console.log('APP离开页面：',to.path, from.path)
-      next()
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" scoped>
-
+<style lang="less">
+#dabao {
+  color: red;
+}
 </style>

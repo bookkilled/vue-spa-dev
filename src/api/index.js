@@ -2,6 +2,7 @@
  * 接口请求API
  */
 import reqwest from 'reqwest'
+import * as LeadBaseADM from '../utils/leadbase.js'
 
 const setTimeout = 5000;
 const domain = (process.env.DEV_ENV === 'production')
@@ -22,7 +23,8 @@ export function mergeData(data) {
   return Object.assign({}, mpubData, data)
 }
 export function RSAmergeDate(data) {
-  return LeadBase.encrypts(JSON.stringify(Object.assign({}, mpubData, data)))
+  console.log(LeadBase.encrypts('123') == LeadBaseADM.encrypts('123'))
+  return LeadBaseADM.encrypts(JSON.stringify(Object.assign({}, mpubData, data)))
 }
 
 
@@ -59,7 +61,7 @@ export function isLogin() {
     // type: 'json',
     timeout: setTimeout,
     contentType: 'application/json;charset=utf-8',
-    data: mergeData()
+    data: mergeData({})
   })
 }
 // 获取产品列表 /front-gateway-web/

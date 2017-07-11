@@ -8,9 +8,8 @@
 </template>
 
 <script>
-import { isWeiXin, setTit } from '../assets/lib/base'
+import { IS_WX, setTit } from '../utils/leadbase'
 
-isWeiXin()
 export default {
   name: 'app',
   data() {
@@ -25,7 +24,7 @@ export default {
   // 监听路由
   watch: {
     '$route' (to, from) {
-      window.isWeixin && setTit(this.$route.meta.title || '处理中')
+      IS_WX && setTit(this.$route.meta.title || '处理中')
       let isBack = this.$router.isBack  //  监听路由变化时的状态为前进还是后退
 　　　 if(isBack) {
 　　　　　this.tsclass = 'slide-right'
@@ -38,7 +37,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 #app {
   min-height: 100%;
 }

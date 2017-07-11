@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 // 懒加载组件
 const Login = resolve => require(['../views/Login.vue'], resolve)
 const Active = resolve => require(['../views/Active.vue'], resolve)
+const Echarts = resolve => require(['../views/Echarts.vue'], resolve)
 // import Login from '../views/Login.vue'
 // import Active from '../views/Active.vue'
 
@@ -52,6 +53,18 @@ export default new Router({
       },
       beforeEnter (to, from, next) {
         console.log('渲染Active')
+        next()
+      }
+    },
+    {
+      path: '/echarts',
+      name: 'Echarts',
+      component: Echarts,
+      meta: {
+        title: 'Echarts展示'
+      },
+      beforeEnter (to, from, next) {
+        console.log('Echarts')
         next()
       }
     }
