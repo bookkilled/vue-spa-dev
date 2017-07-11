@@ -79,4 +79,29 @@ destroyed:function(){}//组件已经销毁
 4、样式文件使用 `less` 文件格式
 
 
+### 操作注意
+1、后端没有完成接口前 我们可以自定义mock数据进行模拟 mock数据统一写在`mock`下，例如：  
+```javascript
+// mock/aaa.json
+{
+  "name": "123",
+  "age": 29
+}
+// api/index.js 请求接口
+// 本地json 模拟调用方式
+export function getJson() {
+  return reqwest({
+    url: `build/aaa.json`, 
+    method: 'GET',
+    type: 'json',
+    timeout: setTimeout,
+    contentType: 'application/json;charset=utf-8',
+    data: mergeData()
+  })
+}
+
+```
+
+
+
 

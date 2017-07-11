@@ -73,7 +73,8 @@ module.exports = {
 			template: "src/index.tpl.html"
 		}),
 		new TransferWebpackPlugin([
-			{ from: 'assets/lib', to: 'build'}
+			{ from: 'assets/lib', to: 'build'},
+			{ from: 'mock', to: 'build'}
 		], path.join(__dirname, 'src')),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin(),
