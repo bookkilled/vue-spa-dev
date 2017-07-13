@@ -16,6 +16,6 @@ name: 'm-header',
 </script>
 
 <style lang="less" scoped>
-// @import '../styles/components/footer.less';
+
 </style>
 

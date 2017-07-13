@@ -55,7 +55,7 @@ var config = {
 			loader: "html"
 		},{
 			test: /\.less$/,
-			loader: 'css?-minimize!postcss!less'
+			loader: ExtractTextPlugin.extract('css?-minimize!postcss!less')
 		}, {
 			test: /\.json?$/,
 			loader: 'json'
@@ -100,6 +100,11 @@ var config = {
 			require('autoprefixer')
 		]
 	},
+	vue: {
+		loaders: {
+			less: ExtractTextPlugin.extract('vue-style-loader', 'css?-minimize!postcss!less')
+		}
+	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: 'src/index.tpl.html',
@@ -112,9 +117,9 @@ var config = {
 		}),
 		new ExtractTextPlugin('css/index.css', { allChunks: true }),
 		new webpack.optimize.CommonsChunkPlugin('shared', 'js/shared.js'),
-		// new TransferWebpackPlugin([
-		// 	{ from: 'assets/lib', to: 'js'}
-		// ], path.join(__dirname, 'src')),
+		new TransferWebpackPlugin([
+			{ from: 'assets/lib', to: 'js'}
+		], path.join(__dirname, 'src')),
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			sourceMap: false,

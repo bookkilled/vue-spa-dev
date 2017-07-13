@@ -38,10 +38,17 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
+  props:['productName'],
   components: {
     MHeader
   },
+  beforeCreated: function () {
+    
+  },
   mounted() {
+    if (IS_WX) {
+      this.showhead = false
+    }
     this.drawLine();
   },
   methods: {
@@ -76,7 +83,7 @@ export default {
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less">
+<style scoped>
 #dabao {
   color: red;
 }

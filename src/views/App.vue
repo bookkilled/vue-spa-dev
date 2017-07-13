@@ -15,7 +15,8 @@ export default {
   data() {
     return {
       showhead: true,
-      tsclass: 'slide-left'
+      tsclass: 'slide-left',
+      productName: '产品名称'
     }
   },
   // components: {
@@ -37,7 +38,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 #app {
   min-height: 100%;
 }

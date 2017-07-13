@@ -1,11 +1,13 @@
 <template>
-    <header id="m-header" class="brand-title">
+    <header class="brand-title">
         <span class="brand-title-back" @click="goback"></span>
         {{ title }}
     </header>
 </template>
 
 <script>
+import { IS_WX, setTit } from '../utils/leadbase'
+
 export default {
   name: 'm-header',
   data () {
@@ -13,6 +15,13 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       title: this.$route.meta.title
     }
+  },
+  beforeCreate: function () {
+    console.log(IS_WX)
+    // IS_WX && (this.isrender = false)
+  },
+  mouted: function () {
+    // IS_WX && (this.isrender = false)
   },
   methods: {
     goback: function () {

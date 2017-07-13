@@ -12,26 +12,35 @@
         <li><span @click="tologin">去登录页</span></li>
         <li><span @click="toactive">列表接口</span></li>
         <li><span @click="toecharts">去图表页面</span></li>
+        <li><span @click="showtoast('父传子')">显示Toast(父传子)</span></li>
+        <li><child v-on:showtoast="showtoast"></child></li>
       </ul>
     </div>
+    <toast :message="tcontent" v-if="istoast" v-on:hidetoast="hidetoast"></toast>
   </div>
 </template>
 
 <script>
 import router from '../routes'
 import MHeader from '../components/header.vue'
+import Toast from '../components/toast.vue'
+import Child from '../components/child.vue'
 import * as api from '../api'
 import { IS_WX, ToDX, dateWeek, setNewDate } from '../utils/leadbase'
 
 export default {
   name: 'app',
   components: {
-      MHeader
+      MHeader,
+      Toast,
+      Child
   },
   data () {
     return {
       showhead: false, // 是否需要现实头部
-      msg: 'Welcome to Hello'
+      msg: 'Welcome to Hello',
+      istoast: false,
+      tcontent: '测试'
     }
   },
   methods: {
@@ -43,17 +52,26 @@ export default {
     },
     toecharts: function () {
       router.push({ path: '/echarts', query: { pageNo: 'A002' } })
+    },
+    showtoast: function (tips) {
+      this.tcontent = tips
+      this.istoast = true
+      console.log(this.tcontent)
+    },
+    hidetoast: function () {
+      console.log('Jinlaile')
+      this.istoast = false
     }
   },
   beforeCreate: function () {
-      console.log('是不是微信：', IS_WX, ToDX('8007630.27'), dateWeek('2017-07-11'), setNewDate('2017-08-31'))
-      api.getJson().then(function (res) {
-          
-      },function (err) {
-          
-      }).always(function(){
-         
-      });
+    console.log('是不是微信：', IS_WX, ToDX('8007630.27'), dateWeek('2017-07-11'), setNewDate('2017-08-31'))
+    api.getJson().then(function (res) {
+        
+    },function (err) {
+        
+    }).always(function(){
+        
+    });
   },
   beforeRouteEnter (to, from, next) {
       console.log('APP载入页面：', to.path, from.path)

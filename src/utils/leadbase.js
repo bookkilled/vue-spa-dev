@@ -13,7 +13,7 @@ export const IS_IOS = ua.indexOf('IPHONE OS') != -1;
 // 当前环境是否为WP平台
 export const IS_WP = ua.indexOf('WINDOWS') != -1 && ua.indexOf('PHONE') != -1;
 // 判断微信 true or false
-export const IS_WX = ua.match(/MicroMessenger/i) == 'micromessenger'
+export const IS_WX = ua.match(/MicroMessenger/i) == 'MICROMESSENGER'
 
 // rsa加密
 export function encrypts (a) {
