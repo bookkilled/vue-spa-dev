@@ -13,7 +13,13 @@
         <li><span @click="toactive">列表接口</span></li>
         <li><span @click="toecharts">去图表页面</span></li>
         <li><span @click="showtoast('父传子')">显示Toast(父传子)</span></li>
-        <li><child v-on:showtoast="showtoast"></child></li>
+        <li>
+          <input type="text" v-model="msg" />
+          <p v-for="item in list">
+          <child v-on:showtoast="showtoast"  :inputValue="msg"></child>
+          </p>
+        </li>
+        <li><child></child></li>
       </ul>
     </div>
     <toast :message="tcontent" v-if="istoast" v-on:hidetoast="hidetoast"></toast>
@@ -38,9 +44,10 @@ export default {
   data () {
     return {
       showhead: false, // 是否需要现实头部
-      msg: 'Welcome to Hello',
+      msg: '请输入',
       istoast: false,
-      tcontent: '测试'
+      tcontent: '测试',
+      list: [1,2]
     }
   },
   methods: {
