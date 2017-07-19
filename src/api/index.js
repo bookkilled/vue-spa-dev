@@ -5,9 +5,14 @@ import reqwest from 'reqwest'
 import * as LeadBaseADM from '../utils/leadbase.js'
 
 const setTimeout = 5000;
+// const domain = (process.env.DEV_ENV === 'production')
+// 	? `${location.protocol}//m.leadfund.com.cn`
+// 	: `${location.protocol}//m.leadfund.com.cn`
 const domain = (process.env.DEV_ENV === 'production')
-	? `${location.protocol}//m.leadfund.com.cn`
-	: `${location.protocol}//m.leadfund.com.cn`
+	? ``
+	: ``
+
+
 let mpubData = { //公共请求参数
 		"terminal": "H5",
     "saleMercId": "LD",
