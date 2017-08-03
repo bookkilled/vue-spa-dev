@@ -28,10 +28,10 @@ module.exports = {
 		},{
 			test: /\.less$/,
 			loader: 'style!css!postcss!less'
-		}, {
-            test: /\.css$/, 
-            loader: ExtractTextPlugin.extract('style-loader', 'css!autoprefixer')}, 
-        {
+		},{
+			test: /\.css$/, 
+			loader: ExtractTextPlugin.extract('style-loader', 'css!autoprefixer')
+		},{
 			test: /\.(jpe?g|gif|png|ico|svg)$/,
 			loader: 'url?limit=8192&name=build/[name].[hash:4].[ext]'
 		}, {

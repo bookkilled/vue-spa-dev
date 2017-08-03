@@ -6,7 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var TransferWebpackPlugin = require('transfer-webpack-plugin');
 // var assetsPath = '/';
 // console.log(process.env.DEV_ENV.replace(/\s/g,"") === 'test');
-var assetsPath = process.env.DEV_ENV.replace(/\s/g,"") === 'test' ? '' : '';
+var assetsPath = process.env.DEV_ENV.replace(/\s/g,"") === 'test' ? '/' : '/';
 console.log(assetsPath);
 
 function resolve (dir) {
@@ -61,7 +61,7 @@ var config = {
 			loader: 'json'
 		}, {
 			test: /\.(jp?g|gif|png|woff|ico)$/,
-			loaders: ['url-loader?limit=8192&name=images/[name].[hash:4].[ext]', 'img?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}']
+			loaders: [`url-loader?limit=8192&name=images/[name].[hash:4].[ext]`, 'img?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}']
 		}, {
 			test: /\.(woff2?|otf|eot|ttf)$/i,
 			loader: 'url?name=fonts/[name].[hash:4].[ext]'

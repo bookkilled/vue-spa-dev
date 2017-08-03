@@ -32,4 +32,7 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import '../styles/components/child.less';
+.btn {
+  background: url('~images/ldloading.gif') no-repeat;
+}
 </style>
