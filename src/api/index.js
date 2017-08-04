@@ -62,8 +62,8 @@ export function getProductDetail(productid) {
 export function isLogin() {
   return reqwest({
     url: `${domain}/front-gateway-web/isLogin.action`,
-    method: 'GET',
-    type: 'json',
+    method: 'POST',
+    // type: 'json',
     timeout: setTimeout,
     contentType: 'application/json;charset=utf-8',
     data: mergeData({})
