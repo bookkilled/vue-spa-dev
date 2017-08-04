@@ -63,7 +63,7 @@ export function isLogin() {
   return reqwest({
     url: `${domain}/front-gateway-web/isLogin.action`,
     method: 'GET',
-    // type: 'json',
+    type: 'json',
     timeout: setTimeout,
     contentType: 'application/json;charset=utf-8',
     data: mergeData({})
@@ -74,7 +74,7 @@ export function getProducts(params) {
   return reqwest({
     url: `${domain}/front-gateway-web/queryMBrokInfoMesList.app`,
     method: 'GET',
-    // type: 'json',
+    type: 'json',
     timeout: setTimeout,
     contentType: 'application/json;charset=utf-8',
     data: { data: RSAmergeDate(params)}
