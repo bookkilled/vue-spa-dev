@@ -673,3 +673,6 @@ body {
   display: block;
   padding: 10px 0;
 }
+.btn {
+  background: url('~images/ldloading.gif') no-repeat;
+}

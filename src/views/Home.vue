@@ -11,11 +11,12 @@
         <li><router-link :to="{path:'/login',query: {name:'bookkilled'}}">Go to home</router-link></li>
         <li><span @click="tologin">去登录页</span></li>
         <li><span @click="toactive">列表接口</span></li>
+        <li><router-link to="/load">LoadingPage</router-link></li>
         <li><span @click="toecharts">去图表页面</span></li>
         <li><span @click="showtoast('父传子')">显示Toast(父传子)</span></li>
         <li>
           <input type="text" v-model="msg" />
-          <p v-for="item in list">
+          <p v-for="item in list" :key="item.id">
           <child v-on:showtoast="showtoast"  :inputValue="msg"></child>
           </p>
         </li>
@@ -72,6 +73,18 @@ export default {
   },
   beforeCreate: function () {
     console.log('是不是微信：', IS_WX, ToDX('8007630.27'), dateWeek('2017-07-11'), setNewDate('2017-08-31'))
+    api.getdemo({
+      phone: '13122557296',
+      verifyPicNo: '23413',
+      picCode: (new Date()).getTime(),
+      busiType: '01'
+    }).then(function (res) {
+        console.log(res);
+    },function (err) {
+        console.log(err);
+    }).always(function(){
+        
+    });;
     api.getJson().then(function (res) {
         
     },function (err) {

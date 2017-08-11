@@ -6,6 +6,7 @@ import Home from '../views/Home.vue'
 const Login = resolve => require(['../views/Login.vue'], resolve)
 const Active = resolve => require(['../views/Active.vue'], resolve)
 const Echarts = resolve => require(['../views/Echarts.vue'], resolve)
+const Load = resolve => require(['../views/Load.vue'], resolve)
 // import Login from '../views/Login.vue'
 // import Active from '../views/Active.vue'
 
@@ -50,6 +51,17 @@ export default new Router({
       component: Active,
       meta: {
         title: '列表页'
+      },
+      beforeEnter (to, from, next) {
+        console.log('渲染Active')
+        next()
+      }
+    },{
+      path: '/load',
+      name: 'Load',
+      component: Load,
+      meta: {
+        title: 'Load'
       },
       beforeEnter (to, from, next) {
         console.log('渲染Active')
