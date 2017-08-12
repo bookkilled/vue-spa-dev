@@ -8,6 +8,7 @@ const setTimeout = 5000;
 // const domain = (process.env.DEV_ENV === 'production')
 // 	? `${location.protocol}//m.leadfund.com.cn`
 // 	: `${location.protocol}//m.leadfund.com.cn`
+console.log(process.env.DEV_ENV)
 const domain = (process.env.DEV_ENV === 'production')
 	? ``
 	: ``
