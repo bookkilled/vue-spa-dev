@@ -41,7 +41,7 @@ var options = {
 };
 var exampleProxy = proxy(options);
 // 接口跨域配置
-app.use('/front-gateway-web', exampleProxy);
+app.use('/wealthgateway', exampleProxy);
 
 var server = http.createServer(app)
 server.listen(3002, ip.address(), (err) => {

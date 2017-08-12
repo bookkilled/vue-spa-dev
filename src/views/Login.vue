@@ -101,7 +101,7 @@ export default {
       login: function (prams) {
           let vm = this
             api.isLogin().then(function (res) {
-                // console.log(res)
+                console.log(res)
             },function (err) {
                 console.log('err')
             });

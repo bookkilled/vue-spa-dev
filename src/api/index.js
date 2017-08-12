@@ -4,6 +4,7 @@
 import reqwest from 'reqwest'
 import * as LeadBaseADM from '../utils/leadbase.js'
 
+<<<<<<< HEAD
 const setTimeout = 5000;
 // const domain = (process.env.DEV_ENV === 'production')
 // 	? `${location.protocol}//m.leadfund.com.cn`
@@ -12,7 +13,19 @@ console.log(process.env.DEV_ENV)
 const domain = (process.env.DEV_ENV === 'production')
 	? ``
 	: ``
+=======
+const setTimeout = 5000
+const DEV_ENV = process.env.DEV_ENV || ''
+>>>>>>> 24e6e3eb079ca07988ab960850611dddb1ae19dc
 
+const domain = (DEV_ENV === 'production')
+	? `${location.protocol}//m.leadfund.com.cn`
+  : `${location.protocol}//m.leadfund.com.cn`
+  
+// const domain = ( DEV_ENV.replace(/\s/g,"") === 'production')
+// 	? `http://devwww.ineleadbank.com.cn`
+//   : `http://devwww.ineleadbank.com.cn`
+const Hmethod =  (DEV_ENV.replace(/\s/g,"") === 'production') ? `POST` : `GET`
 
 let mpubData = { //公共请求参数
 		"terminal": "H5",
@@ -29,7 +42,7 @@ export function mergeData(data) {
   return Object.assign({}, mpubData, data)
 }
 export function RSAmergeDate(data) {
-  console.log(LeadBase.encrypts('123') == LeadBaseADM.encrypts('123'))
+  // console.log(LeadBase.encrypts('123') == LeadBaseADM.encrypts('123'))
   return LeadBaseADM.encrypts(JSON.stringify(Object.assign({}, mpubData, data)))
 }
 
@@ -49,7 +62,7 @@ export function RSAmergeDate(data) {
 export function getProductDetail(productid) {
   return reqwest({
     url: `${domain}/finance/open/product/productInfo.do`,
-    method: 'GET',
+    method: Hmethod,
     type: 'jsonp',
     timeout: setTimeout,
     contentType: 'application/json;charset=utf-8',
@@ -63,19 +76,32 @@ export function getProductDetail(productid) {
 export function isLogin() {
   return reqwest({
     url: `${domain}/front-gateway-web/isLogin.action`,
-    method: 'GET',
-    // type: 'json',
+    method: Hmethod,
+    type: 'json',
     timeout: setTimeout,
     contentType: 'application/json;charset=utf-8',
     data: mergeData({})
   })
 }
+
+// 
+export function getdemo(params) {
+  return reqwest({
+    url: `${domain}/wealthgateway/sendSmsCode.app`,
+    method: Hmethod,
+    type: 'json',
+    timeout: setTimeout,
+    contentType: 'application/json;charset=utf-8',
+    data: { data: RSAmergeDate(params)}
+  })
+}
+
 // 获取产品列表 /front-gateway-web/
 export function getProducts(params) {
   return reqwest({
     url: `${domain}/front-gateway-web/queryMBrokInfoMesList.app`,
-    method: 'GET',
-    // type: 'json',
+    method: Hmethod,
+    type: 'json',
     timeout: setTimeout,
     contentType: 'application/json;charset=utf-8',
     data: { data: RSAmergeDate(params)}
@@ -86,7 +112,7 @@ export function getProducts(params) {
 export function getPAList() {
   return reqwest({
     url: 'https://m.pingan.com/chaoshi/finance/open/product/productList.do',
-    method: 'GET',
+    method: Hmethod,
     type: 'jsonp',
     timeout: setTimeout,
     contentType: 'application/json;charset=utf-8',
@@ -105,7 +131,7 @@ export function getPAList() {
 export function getJson() {
   return reqwest({
     url: `build/aaa.json`,
-    method: 'GET',
+    method: Hmethod,
     type: 'json',
     timeout: setTimeout,
     contentType: 'application/json;charset=utf-8',
