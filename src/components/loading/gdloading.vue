@@ -18,10 +18,6 @@ export default {
 <style lang="less" scoped>
 .pop {
   position: relative;
-  // top: 0;
-  // left: 0;
-  // right: 0;
-  // bottom: 0;
   height: 300px;
   width: 100%;
   background: rgba(0, 0, 0, .8);
@@ -29,9 +25,7 @@ export default {
     position: absolute;
     top: 50%;
     left: 50%;
-    // -webkit-transform:  translate(-50%, -50%) ;
-    // transform:  translate(-50%, -50%) ;
-    border: 2px solid #ccc;
+    border: 2px solid #999;
     background: transparent;
     &.round {
       margin-top: -40px;
@@ -42,6 +36,8 @@ export default {
       border: 2px solid #ccc;
       border-radius: 40px;    
       z-index: 997;
+      -webkit-animation: round-load 3s infinite  ease-in-out;
+      animation: round-load 3s infinite  ease-in-out;
       &:before {
         position: absolute;
         content: '';
@@ -52,7 +48,6 @@ export default {
         border-top-left-radius: 41px;
         border-bottom-left-radius: 41px;
         background: rgb(51, 51, 51);
-        // transform: rotate(0deg);
         -webkit-transform-origin: 42px 41px;
         transform-origin: 42px 41px;
         -webkit-animation: round-cover 1.5s infinite  ease-in-out;
@@ -83,8 +78,8 @@ export default {
       height: 20px;
       border: 2px solid #ccc;
       background: transparent;
-      -webkit-animation: square-load 1.5s infinite ease-in-out;
-      animation: square-load 1.5s infinite  ease-in-out;
+      -webkit-animation: square-load 3s infinite ease-in-out;
+      animation: square-load 3s infinite  ease-in-out;
       z-index: 999;
     }
   }
@@ -94,9 +89,12 @@ export default {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+  50% {
+    border-color: #a01e23;
+  }
   100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: rotate(7200deg);
+    transform: rotate(720deg);
   }
 }
 @keyframes square-load {
@@ -104,9 +102,34 @@ export default {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+  50% {
+    border-color: #a01e23;
+  }
   100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg);
+  }
+}
+@-webkit-keyframes round-load {
+  0% {
+    border-color: #FFF;
+  }
+  50% {
+    border-color: #a01e23;
+  }
+  100% {
+    border-color: #FFF;
+  }
+}
+@keyframes round-load {
+    0% {
+    border-color: #FFF;
+  }
+  50% {
+    border-color: #a01e23;
+  }
+  100% {
+    border-color: #FFF;
   }
 }
 @-webkit-keyframes round-cover {

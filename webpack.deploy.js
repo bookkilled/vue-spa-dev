@@ -4,9 +4,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var StatsPlugin = require('stats-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var TransferWebpackPlugin = require('transfer-webpack-plugin');
-// var assetsPath = '/';
-// console.log(process.env.DEV_ENV.replace(/\s/g,"") === 'test');
-var assetsPath = process.env.DEV_ENV.replace(/\s/g,"") === 'test' ? '/' : '/';
+const CleanWebpackPlugin = require('clean-webpack-plugin') // 删除上次编译dist内部文件
+
+var assetsPath = process.env.DEV_ENV.replace(/\s/g,"") === 'test' ? '/' : '/'; // 输出文件对应服务器目录
 console.log(assetsPath);
 
 function resolve (dir) {
@@ -140,7 +140,15 @@ var config = {
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 			'process.env.DEV_ENV': JSON.stringify(process.env.DEV_ENV)
-		})
+		}),
+		new CleanWebpackPlugin(
+        ['dist/*'],　 //匹配删除的文件
+        {
+            root: __dirname,       　　　　　　　　　　//根目录
+            verbose:  true,        　　　　　　　　　　//开启在控制台输出信息
+            dry:      false        　　　　　　　　　　//启用删除文件
+        }
+    )
 	]
 };
 

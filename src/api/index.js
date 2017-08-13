@@ -4,19 +4,8 @@
 import reqwest from 'reqwest'
 import * as LeadBaseADM from '../utils/leadbase.js'
 
-<<<<<<< HEAD
-const setTimeout = 5000;
-// const domain = (process.env.DEV_ENV === 'production')
-// 	? `${location.protocol}//m.leadfund.com.cn`
-// 	: `${location.protocol}//m.leadfund.com.cn`
-console.log(process.env.DEV_ENV)
-const domain = (process.env.DEV_ENV === 'production')
-	? ``
-	: ``
-=======
 const setTimeout = 5000
 const DEV_ENV = process.env.DEV_ENV || ''
->>>>>>> 24e6e3eb079ca07988ab960850611dddb1ae19dc
 
 const domain = (DEV_ENV === 'production')
 	? `${location.protocol}//m.leadfund.com.cn`

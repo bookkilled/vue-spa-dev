@@ -23,7 +23,7 @@
 <script>
 import router from '../routes'
 import MHeader from '../components/header.vue'
-import loading from '../components/ldloading.vue'
+import loading from '../components/loading/ldloading.vue'
 import * as api from '../api'
 import { getUrlParam, setTit } from '../utils/leadbase'
 
