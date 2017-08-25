@@ -41,6 +41,9 @@ export default {
 <style lang="less" scoped>
 #app {
   min-height: 100%;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
 }
 .child-view {
   position: absolute;

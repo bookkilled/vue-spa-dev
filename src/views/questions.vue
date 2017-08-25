@@ -1,20 +1,13 @@
 <template>
   <div class="qa">
-    <m-header v-if="showhead"></m-header>
+    <m-header v-if="!showhead" :ctitle="tittle"></m-header>
     <div :class="[{pt44: showhead}, 'floor']">
-      <div class="tit">《战狼2》</div>
-      <div class="detail">测一测，我与战狼明星的合体值？</div>
       <div class="star">
         <span class="star01"></span>
         <span class="star02"></span>
          <span class="star03"></span> 
       </div>
-      <div class="list" v-cloak>
-        <router-link v-for="item in list" :key="item.id" class="box" :to="{path:'/q/'+encodeURIComponent(item.name)}">
-          <!-- <p class="title">{{item.name}}</p> -->
-          <p class="img"><img :src="item.img" width="100%" /></p>
-        </router-link>
-      </div>
+      
       <!-- <div class="sun" @click="start">GO!</div> -->
       <p class="copyright">测评信息遵守保密协议</p>
     </div>
@@ -34,54 +27,7 @@ export default {
     return {
       showhead: false, // 是否需要现实头部
       msg: 'Welcome to Hello',
-      list: [
-        {
-          id: 0,
-          name: '吴京',
-          tit: '犯我中华者虽远必诛',
-          img: 'https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/crop%3D0%2C0%2C483%2C483%3Bh%3D240%3Bq%3D95/sign=6ad0f27c06f431ada89d19797606809f/1f178a82b9014a902e645153a3773912b21bee82.jpg'
-        },{
-          id: 1,
-          name: '吴刚',
-          tit: '犯我中华者虽远必诛',
-          img: 'https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/crop%3D0%2C0%2C299%2C299%3Bh%3D240%3Bq%3D95/sign=1a04446ee8f81a4c327db689ea1a4c69/80cb39dbb6fd5266c621ca0ea818972bd40736a5.jpg'
-        },{
-          id: 2,
-          name: '卢靖姗',
-          tit: '犯我中华者虽远必诛',
-          img: 'https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/crop%3D0%2C0%2C800%2C800%3Bh%3D240%3Bq%3D95/sign=7fd4ccebee1190ef15b4c89ff32bb126/a8ec8a13632762d00de2b8b9a9ec08fa503dc6dc.jpg'
-        },{
-          id: 3,
-          name: '弗兰克·格里罗',
-          tit: '犯我中华者虽远必诛',
-          img: 'https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/crop%3D0%2C0%2C463%2C463%3Bh%3D240%3Bq%3D95/sign=4ee09414fa1fbe090811995456502003/50da81cb39dbb6fd674d4e440124ab18972b37b9.jpg'
-        },{
-          id: 4,
-          name: '张翰',
-          tit: '犯我中华者虽远必诛',
-          img: 'https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/crop%3D0%2C0%2C3800%2C3800%3Bh%3D240%3Bq%3D95/sign=b0ccd63bff03918fc39e678a6c0d0aa7/a6efce1b9d16fdfa7cba4735bc8f8c5495ee7b13.jpg'
-        },{
-          id: 5,
-          name: '丁海峰',
-          tit: '犯我中华者虽远必诛',
-          img: 'https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/crop%3D0%2C0%2C398%2C398%3Bh%3D240%3Bq%3D95/sign=27918149572c11dfca9ee5635e174ee0/960a304e251f95ca9480d41cc9177f3e67095226.jpg'
-        },{
-          id: 6,
-          name: '龙小云',
-          tit: '犯我中华者虽远必诛',
-          img: 'https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/crop%3D0%2C0%2C500%2C500%3Bh%3D240%3Bq%3D95/sign=80562eec622762d09471feff9ddc24ca/c2fdfc039245d688fd85236ba5c27d1ed31b247d.jpg'
-        },{
-          id: 7,
-          name: '石青松',
-          tit: '犯我中华者虽远必诛',
-          img: 'https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/crop%3D0%2C0%2C293%2C293%3Bh%3D240%3Bq%3D95/sign=fcf3ce1148086e067ee7650b3f3857c4/18d8bc3eb13533fac6e1c10eacd3fd1f41345bbe.jpg'
-        },{
-          id: 8,
-          name: '于谦',
-          tit: '犯我中华者虽远必诛',
-          img: 'https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/crop%3D0%2C0%2C500%2C500%3Bh%3D240%3Bq%3D95/sign=fc5d50f373899e516cc160547f97f503/9a504fc2d56285352c7a512f98ef76c6a7ef6322.jpg'
-        }
-      ]
+      tittle: `开始与【${decodeURIComponent(this.$route.params.id)}】合体`
     }
   },
   methods: {
@@ -94,6 +40,8 @@ export default {
   },
   beforeCreate:function(){
       console.log('login 组件实例化之前')
+      
+      console.log(this.$route.params.id)
   },//组件实例化之前: 举个栗子：可以在这加个loading事件 
   created:function(){
       // this.loading = false
@@ -102,6 +50,7 @@ export default {
       
   },//组件写入dom结构之前
   mounted:function(){//组件写入dom结构了:  在这发起后端请求，拿回数据，配合路由钩子做一些事情
+    
   },
   beforeUpdate:function(){   
   },//组件更新前
@@ -129,13 +78,11 @@ export default {
   z-index: 3;
 }
 .star {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  right: 0;
+  bottom: 0;
   span {
     display: block;  
     width: 4px;  
@@ -278,52 +225,6 @@ export default {
   from {
     opacity: 0;
     transform: translate3d(-2000px, 0, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-.btn {
-
-}
-.list {
-  position: absolute;
-  padding: 20px 5%;
-  z-index: 6;
-  margin-top: 20px;
-  animation: fadeInUp 2s -1s;
-  .box {
-    display: inline-block;
-    box-sizing: border-box;
-    width: 30%;
-    height: 100px;
-    margin-right: 5%;
-    margin-bottom: 5%;
-    color: #5A5A5A;
-    text-align: center;
-    // background: #fff;
-    overflow: hidden;
-    opacity: .8;
-    &:nth-child(3n+0) {
-      margin-right: 0;
-    }
-    .title {
-      padding: 10px 0;
-    }
-    .img {
-      // height: 96%;
-      // width: 96%;
-      // padding: 4px;
-      overflow: hidden;
-    }
-  }
-}
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
   }
 
   to {
