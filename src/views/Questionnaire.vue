@@ -288,6 +288,9 @@ export default {
 .btn {
 
 }
+[v-cloak] {
+    display: none;
+}
 .list {
   position: absolute;
   padding: 20px 5%;
