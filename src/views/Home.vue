@@ -2,7 +2,8 @@
   <div>
     <m-header v-if="showhead"></m-header>
     <div v-bind:class="{pt44: showhead}">
-      <p class="nav">Page: home</p>
+      <p class="nav">Page: home {{ msg }}</p>
+      <p class="nav" :sname="tcontent | ft">{{ tcontent | ft }}</p>
       <ul class="linklist">
         <!-- 使用 router-link 组件来导航. -->
         <!-- 通过传入 `to` 属性指定链接. -->
@@ -47,9 +48,14 @@ export default {
       showhead: false, // 是否需要现实头部
       msg: '请输入',
       istoast: false,
-      tcontent: '测试',
+      tcontent: '测试1222',
       list: [1,2]
     }
+  },
+  filters: {
+      ft: function(str){
+        return str + '...'
+      }
   },
   methods: {
     tologin: function () {
@@ -92,6 +98,10 @@ export default {
     }).always(function(){
         
     });
+    var _ = this
+    setTimeout(function(){
+      _.msg = '定时器文案'
+    },3000)
   },
   beforeRouteEnter (to, from, next) {
       console.log('APP载入页面：', to.path, from.path)
@@ -101,11 +111,19 @@ export default {
   beforeRouteLeave (to, from, next) {
       console.log('APP离开页面：',to.path, from.path)
       next()
+  },
+  mounted () {
+    
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
-
+[v-cloak] {
+  display: none;
+}
+.hometext {
+  color: #ccc;
+}
 </style>

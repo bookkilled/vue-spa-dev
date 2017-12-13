@@ -19,52 +19,46 @@ module.exports = {
 		publicPath: '/'
 	},
 	module: {
-		loaders: [{
+		rules: [{
 			test: /\.vue$/,
-			loader: 'vue-loader'
+			use: 'vue-loader'
 		},{
 			test: /\.html$/,
-			loader: "html"
+			use: "html-loader"
 		},{
 			test: /\.less$/,
-			loader: 'style!css!postcss!less'
+			use: ['style-loader','css-loader','less-loader']
 		},{
 			test: /\.css$/, 
-			loader: ExtractTextPlugin.extract('style-loader', 'css!autoprefixer')
+			use: ExtractTextPlugin.extract(['style-loader', 'css-loader','autoprefixer-loader'])
 		},{
-			test: /\.(jpe?g|gif|png|ico|svg)$/,
-			loader: 'url?limit=8192&name=build/[name].[hash:4].[ext]'
+			test: /\.(jpeg|jpg|gif|png|ico|svg)$/,
+			use: 'url-loader?limit=8192&name=build/[name].[hash:4].[ext]'
 		}, {
-			test: /\.(woff2?|otf|eot|ttf)$/i,
-			loader: 'url?name=fonts/[name].[hash:4].[ext]'
+			test: /\.(woff2|woff|otf|eot|ttf)$/i,
+			use: 'url-loader?name=fonts/[name].[hash:4].[ext]'
 		}, {
 			test: /\.json$/,
-			loader: 'json'
+			use: 'json-loader'
 		}, {
 			test: /\.(js)$/,
 			exclude: /node_modules/,
-			loaders: ['babel']
+			use: 'babel-loader'
 		}]
 	},
 	resolve: {
-		modulesDirectories: [
+		modules: [
 			'src',
 			'node_modules',
 			'src/assets'
 		],
-		extensions: ['', '.js', '.png', '.vue', '.json'],
+		extensions: ['*', '.js', '.png', '.vue', '.json'],
 		alias: {
 			'vue': 'vue/dist/vue.common.js',
 			'src': path.resolve(__dirname, '../src'),
 			'assets': path.resolve(__dirname, '../src/assets'),
 			'components': path.resolve(__dirname, '../src/components')
 		}
-	},
-	postcss: function() {
-		return [
-			require('precss'),
-			require('autoprefixer')
-		]
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -77,9 +71,8 @@ module.exports = {
 			{ from: 'mock', to: 'build'}
 		], path.join(__dirname, 'src')),
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin(),
-		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.optimize.DedupePlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
+		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.optimize.AggressiveMergingPlugin({
 			minSizeReduce: 1.5,
 			moveToParents: true
