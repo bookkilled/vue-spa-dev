@@ -7,6 +7,9 @@ const Login = resolve => require(['../views/Login.vue'], resolve)
 const Active = resolve => require(['../views/Active.vue'], resolve)
 const Echarts = resolve => require(['../views/Echarts.vue'], resolve)
 const Load = resolve => require(['../views/Load.vue'], resolve)
+const Questionnaire = resolve => require(['../views/Questionnaire.vue'], resolve)
+const questions = resolve => require(['../views/questions.vue'], resolve)
+
 // import Login from '../views/Login.vue'
 // import Active from '../views/Active.vue'
 
@@ -67,8 +70,29 @@ export default new Router({
         console.log('渲染Active')
         next()
       }
-    },
-    {
+    },{
+      path: '/qa',
+      name: 'Questionnaire',
+      component: Questionnaire,
+      meta: {
+        title: 'Questionnaire'
+      },
+      beforeEnter (to, from, next) {
+        console.log('渲染Questionnaire')
+        next()
+      }
+    },{
+      path: '/q/:id',
+      name: 'questions',
+      component: questions,
+      meta: {
+        title: ''
+      },
+      beforeEnter (to, from, next) {
+        console.log('questions')
+        next()
+      }
+    },{
       path: '/echarts',
       name: 'Echarts',
       component: Echarts,

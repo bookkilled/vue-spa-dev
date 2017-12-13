@@ -13,9 +13,10 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      title: this.$route.meta.title
+      title: this.ctitle || this.$route.meta.title
     }
   },
+  props: ['ctitle'],
   beforeCreate: function () {
     console.log(IS_WX)
     // IS_WX && (this.isrender = false)

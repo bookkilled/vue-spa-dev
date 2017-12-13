@@ -13,6 +13,7 @@
         <li><span @click="tologin">去登录页</span></li>
         <li><span @click="toactive">列表接口</span></li>
         <li><router-link to="/load">LoadingPage</router-link></li>
+        <li><router-link to="/qa">Questionnaire</router-link></li>
         <li><span @click="toecharts">去图表页面</span></li>
         <li><span @click="showtoast('父传子')">显示Toast(父传子)</span></li>
         <li>

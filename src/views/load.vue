@@ -4,6 +4,10 @@
     <div v-bind:class="{pt44: showhead}">
       <loading v-if="loading"></loading>
       <xzqloading v-if="loading"></xzqloading>
+      <timeloading v-if="loading"></timeloading>
+      <linepointloading v-if="loading"></linepointloading>
+      <roundpointloading v-if="loading"></roundpointloading>
+      <allpointloading v-if="loading"></allpointloading>
     </div>
   </div>
 </template>
@@ -11,15 +15,23 @@
 <script>
 import router from '../routes'
 import MHeader from '../components/header.vue'
-import loading from '../components/gdloading.vue'
-import xzqloading from '../components/xzqloading.vue'
+import loading from '../components/loading/gdloading.vue'
+import xzqloading from '../components/loading/xzqloading.vue'
+import timeloading from '../components/loading/timeloading.vue'
+import linepointloading from '../components/loading/linepointloading.vue'
+import roundpointloading from '../components/loading/roundpointloading.vue'
+import allpointloading from '../components/loading/allpointloading.vue'
 
 export default {
   name: 'app',
   components: {
       MHeader,
       loading,
-      xzqloading
+      xzqloading,
+      timeloading,
+      linepointloading,
+      roundpointloading,
+      allpointloading
   },
   data () {
     return {
